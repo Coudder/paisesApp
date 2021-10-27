@@ -1,1 +1,26 @@
-<p>por-pais works!</p>
+<h2>Por País</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- se pone la propiedad onenter de el output que hicimos en ipaisunput 
+            mandamos a llamar el ondebounce creado tmb en  inputpais y mandamos un funcuion con evento-->
+            <app-pais-input 
+                         (onEnter) ="buscar( $event ) "
+                         (onDebounce) ="sugerencias( $event)">
+            </app-pais-input>
+    </div>
+</div>
+<hr>
+
+<div *ngIf="hayError"
+     class="alert alert-danger">
+    No se encontro nada con el {{termino}}
+</div>
+
+<!-- mostrar la tabla solo si hay paises dispobibles de lo contrario no se muestra -->
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <app-pais-tabla [paises] ="paises"></app-pais-tabla>
+    </div>
+</div>
